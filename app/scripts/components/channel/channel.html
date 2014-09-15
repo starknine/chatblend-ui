@@ -1,0 +1,107 @@
+<div class="chats-camp" id="channel-{{ id }}">
+  <div class="camp-header">
+    <h2>
+      {{ name }}
+      {{ (typeof phone_number !== 'undefined' && typeof phone_number.phone_number !== 'undefined' ? '&mdash; ' + phone_number.phone_number : '') }}
+      <div class="numberOfChats">
+        <div class="number web"></div> <i class="heading-icon fa fa-comments"></i>
+        {{ (typeof phone_number !== 'undefined' ? '<div class="number phone"></div><i class="heading-icon fa fa-phone-square"></i>' : '') }}
+      </div>
+    </h2>
+
+    <div class="camp-setting">
+      <div class="icon-button" id="nav-email">
+        <a href="#email">
+          <i class="fa fa-envelope"></i>
+          <div class="fa-label">Email</div>
+        </a>
+        <div class="modal" id="modal-email">
+          <div class="closebutton"><i class="fa fa-times-circle"></i></div>
+          <input type="hidden" name="convid" id="convid" />
+          <h2>Email Conversation</h2>
+          <p>Email this conversation to</p>
+          <input type="text" id="form-emailconversation" name="form-emailconversation" />
+        </div>
+      </div>
+      <div class="icon-button" id="nav-archive">
+        <a href="/conversations/archived">
+          <i class="fa fa-folder-open"></i>
+          <div class="fa-label">Archive</div>
+        </a>
+        <div class="modal" id="modal-archive">
+          <div class="closebutton"><i class="fa fa-times-circle"></i></div>
+          <input type="hidden" name="convid" id="convid" />
+          <h2>Archive Conversation</h2>
+          <p>Are you sure you want to archive this conversation?</p>
+          <div class="buttons">
+            <button class="cancel">No</button>
+            <button class="submit">Yes</button>
+          </div>
+        </div>
+        <div class="modal" id="modal-archiveempty">
+          <div class="closebutton"><i class="fa fa-times-circle"></i></div>
+          <h2>Archive Empty Conversations</h2>
+          <p>If you have many empty conversations, it may take more than 30 seconds, do you want to proceed?</p>
+          <div class="buttons">
+            <button class="cancel">No</button>
+            <button class="submit">Yes</button>
+          </div>
+        </div>
+      </div>
+      <div class="icon-button" id="nav-export">
+        <a href="#settings">
+          <i class="fa fa-download"></i>
+          <div class="fa-label">Export</div>
+        </a>
+        <div class="modal" id="modal-export">
+          <div class="closebutton"><i class="fa fa-times-circle"></i></div>
+          <input type="hidden" name="convid" id="convid" />
+          <h2>Export Conversation</h2>
+          <p>Export Options</p>
+          <ul>
+            <li><a href="#">Download XML</a></li>
+            <li><a href="#">Download Text File</a></li>
+            <li><a href="#">Download CSV</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="chats-list" class="chats-list">
+    <button class="sort" data-sort="status" id="chats-list-sort-button" style="display:none;"></button>
+    <ul class="list">
+    </ul>
+  </div>
+  <div class="chats-messages"></div>
+
+  <div class="channel-msg fade-in"><p>No active conversations</p></div>
+  <div class="chats-conv">
+  </div>
+
+  <input type="hidden" class="phone-number" value="{{ (typeof phone_number !== 'undefined' ? phone_number.phone_number : '') }}">
+
+  <div class="channel-footer">
+    <div class="visitor">
+      <div class="information">
+        <i class="fa fa-users"></i>
+        <p>Visitors<p>
+        <div class="number"></div>
+        <div class="menu">
+          <ul>
+            <li>
+              <label for="switch-visitors">View Visitors</label>
+              <input type="checkbox" id="switch-visitors" value="true" />
+            </li>
+            <li>
+              <a href="/manage/visitors" target="_blank">Visitors in new window</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="active-switch" style="display:none;">
+      <input type="checkbox" value="true" class="switch" />
+      <label for="switch-online"></label>
+    </div>
+  </div>
+</div>

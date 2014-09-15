@@ -1,0 +1,40 @@
+#chatblend_client {
+  position:fixed;
+  display:block;
+  bottom:0;
+  right:10px;
+  width:298px;
+  height:60px;
+  transition:.5s;
+  z-index:10000000;
+}
+#chatblend_client.mobile {
+  height:60px;
+  
+}
+
+#chatblend_client.mobile.twox_ignore {
+  height:420px;
+  width:596px;
+  
+}
+#chatblend_client.mobile #chatblend_click_ignore {
+    display:none;
+  }
+#chatblend_client.view {
+  height:310px;
+}
+
+#chatblend_client iframe {
+  height:100%;
+  border:0;
+}
+
+#chatblend_client #chatblend_click {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 61px;
+  display: block;
+}

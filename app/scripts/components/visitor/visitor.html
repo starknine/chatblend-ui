@@ -1,0 +1,6 @@
+<li class="user {{ status }}" id="visitor-{{ visitor.id }}">
+  <label for="chat-list-{{ id }}" class="chat-list-check-label"></label>
+  <span class="status {{ status }} {{ type }}">{{ status }}</span>
+  <span class="name">{{ (visitor.metas && visitor.metas.name) || visitor.ip || visitor.phone_number }}</span>
+  <input class="chat-list-check" id="chat-list-{{ id }}" value="{{ id }}" type="checkbox" >
+</li>

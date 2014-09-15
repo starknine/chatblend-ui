@@ -28,7 +28,7 @@ gulp.task('scripts', function () {
 });
 
 gulp.task('partials', function () {
-  return gulp.src('app/partials/**/*.html')
+  return gulp.src('app/{partials,scripts/components}/**/*.html')
     .pipe($.minifyHtml({
       empty: true,
       spare: true,

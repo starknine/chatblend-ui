@@ -1,0 +1,4 @@
+<li class="cb-msg {{ (from_visitor ? 'from' : 'to') }}" id="chat-message-{{ id }}">
+  <div class="cb-timestamp">{{ created_at }}</div>
+  <p class="{{ (actor_id === 0 ? 'auto-responder' : '') }}">{{ message }}</p>
+</li>

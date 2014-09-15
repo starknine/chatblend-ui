@@ -1,0 +1,67 @@
+<div class="conv-con {{ status }}" id="chat-{{ id }}" data-visitor-id="{{ visitor.id }}">
+  <div class="cb-user-name {{ status }} {{ type }}"><h3>{{ (visitor.metas && visitor.metas.name) || visitor.ip || visitor.phone_number }}</h3></div>
+  <div class="location hide">{{ visitor.ip }}</div>
+  <div class="cb-actions">
+    <ul>
+      <li>
+        <a href="#" class="email">
+          <i class="fa fa-envelope"></i>
+          <div class="fa-label">Email</div>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="archive">
+          <i class="fa fa-folder-open"></i>
+          <div class="fa-label">Archive</div>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="export">
+          <i class="fa fa-download"></i>
+          <div class="fa-label">Export</div>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="metas">
+          <i class="fa fa-download"></i>
+          <div class="fa-label">Details</div>
+        </a>
+        <div class="visitor-metas" data-visitor-id={{ visitor.id }}>
+          <input class="useragent" type="hidden" value="{{ visitor.useragent }}" />
+          <ul>
+            <li class="info">
+              <span class="label">Location</span> 
+              <span class="value location">{{ visitor.metas.location }}</span>
+            </li>
+            <li class="info">
+              <span class="label">IP/Phone</span> 
+              <span class="value ip-phone">{{  visitor.ip || visitor.phone_number  }}</span>
+            </li>
+            <li class="info">
+              <span class="label">Last Page Visited</span> 
+              <span class="value current-page"></span>
+            </li>
+            <li class="info">
+              <span class="label">Browser</span> 
+              <span class="value browser"></span>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="cb-chat-area">
+    <ul class="cb-chat-messages">
+
+    </ul>
+    <div class="cb-chat-footer">
+      <div class="cb-chatbox-quick fa fa-stack-exchange">
+        <ul>
+        </ul>
+      </div>
+      <textarea class="cb-chatbox"></textarea>
+      <div class="cb-chatbox-submit" data-target-id="{{ id }}">Send</div>
+      <input type="hidden" id="phone-number-{{ id }}" value="{{ visitor.phone_number }}">
+    </div>
+  </div>
+</div>

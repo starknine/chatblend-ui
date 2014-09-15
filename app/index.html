@@ -1,64 +1,186 @@
 <!doctype html>
 <html class="no-js" ng-app="chatblendApp">
-  <head>
+<head>
     <meta charset="utf-8">
     <title>frontend</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-    <!-- build:css({.tmp,app}) styles/vendor.css -->
-    <link rel="stylesheet" href="styles/vendor.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="ChatBlend">
+    <link rel="apple-touch-icon" href="/img/apple-touch-icon-precomposed.png"/>
+    <link href="/img/cb-loading-640x920.png" rel="apple-touch-startup-image">
+    <meta name="format-detection" content="telephone=no">
+    <link href='https://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+    <!-- build:css({.tmp,app}) styles/base.css -->
+    <link rel="stylesheet" href="/styles/base.css">
 
     <!-- bower:css -->
     <!-- endbower -->
     <!-- endbuild -->
 
-    <!-- build:css({.tmp,app}) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
+    <!-- build:css({.tmp,app}) styles/styles.css -->
+    <link rel="stylesheet" href="/styles/styles.css">
     <!-- endbuild -->
 
     <!-- build:js scripts/modernizr.js -->
-    <script src="bower_components/modernizr/modernizr.js"></script>
+    <script src="/bower_components/modernizr/modernizr.js"></script>
     <!-- endbuild -->
-  </head>
-  <body>
-    <!--[if lt IE 10]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
 
-    <div ng-view></div>
-
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-    <script>
-      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-      e.src='//www.google-analytics.com/analytics.js';
-      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-      ga('create','UA-XXXXX-X');ga('send','pageview');
+    <script type="text/javascript">
+    (function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(chref=d.href).replace(e.href,"").indexOf("#asd")&&(!/^[a-z\+\.\-]+:/i.test(chref)||chref.indexOf(e.protocol+"//"+e.host)===0)&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone");
     </script>
+</head>
+<body>
+  <div class="iosheader"></div>
+  <header class="cb-header">
+    <div class="cb-nav">
+      <div class="cb-suite-box">
+        <label class="s9-suite" for="cb-nav-setting">
+          <div class="cb-s-logo">
+            <div class="cb-s"></div><div class="cb-s"></div><div class="cb-s"></div><div class="cb-s"></div>
+          </div>
+        </label>
+        <a class="cb-logo" href="/"><img src="/img/chat.png" alt="Chat Blend"></a>
+      </div>
+    </div>
+    <!-- <%= if @active_user do %> -->
+      <div class="cb-search">
+        <input type="checkbox" id="setting-searchshow" class="cb-setting" />
+        <div class="search-con">
+          <label for="search-input" class="hide-on-small"><i class="fa fa-search"></i></label>
+          <label for="setting-searchshow" class="show-on-small"><i class="fa fa-search"></i></label>
+          
+          <div class="search-input-container">
+            <input type="text" value="search conversations" class="search-input" id="search-input">
+          </div>
+          
+          <label for="search-input" class="search_text hide-on-small">Search</label>
+          <label for="setting-searchshow" class="search_text show-on-small">Search</label>
+        </div>
+        <div class="search-results">
+          <div class="results-close"><i class="fa fa-times-circle"></i></div>
+        </div>
+      </div>
+      <div class="cb-user">
+        <div class="user-name">
+          Welcome, <strong>{{ active_user.first_name }}</strong>
+        </div>
+        <div class="user-settings">
+          <div class="icon-button">
+            <a href="#settings" id="cb-alerts">
+                <i class="fa fa-bell"></i>
+                <div class="fa-label">Alerts</div>
+            </a>
+          </div>
+          <div class="icon-button">
+            <a href="/manage">
+                <i class="fa fa-gear"></i>
+                <div class="fa-label">Admin</div>
+            </a>
+          </div>
+          <div class="icon-button hide-on-small">
+            <a href="/session/destroy">
+                <i class="fa fa-sign-out"></i>
+                <div class="fa-label">Sign Out</div>
+            </a>
+          </div>
+        </div>
 
-    <!-- build:js scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/angular-touch/angular-touch.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <!-- endbower -->
-    <!-- endbuild -->
+        <div class="settings-alerts">
+          <h3>Alerts</h3>
+          <ul class="sms-count-alert" style="display:none;">
+            <li><p>You currently have <span class="sms-available"></span> SMS available.</p></li>
+          </ul>
+          <ul>
+            <li><p>No current alerts</p></li>
+          </ul>
+        </div>
+      </div>
+    <!-- <% end %> -->
+  </header>
 
-    <!-- build:js({app,.tmp}) scripts/main.js -->
-    <script src="scripts/chatblendApp.js"></script>
-    <script src="scripts/main/main-ctrl.js"></script>
 
-    <!-- inject:partials -->
-    <!-- angular templates will be automaticaly converted in js and inserted here -->
-    <!-- endinject -->
-    <!-- endbuild -->
+  <input type="checkbox" class="cb-setting" id="cb-nav-setting">
+  <div class="cb-app">
+    <!-- display map service -->
+    <div class="app-maps">
+      <div class="maps-close">
+        <i class="fa fa-times-circle"></i>
+      </div>
+      <div class="maps-header">
+        <h3>Area Map</h3>
+      </div>
+      <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+      <div class="maps-google" id="map-canvas">
+      </div>
+    </div>
 
-  </body>
+    <div class="app-menu">
+      <!-- <%= if @active_user do %> -->
+        <ul>
+          <!--<li><a href="#">Dashboard<div class="fa fa-desktop"></div></a></li>-->
+          <li><a href="/">Chats <div class="fa fa-bullhorn"></div></a></li>
+          <!--<li><a href="#">Export <div class="fa fa-download"></div></a></li>-->
+          <li><a href="/manage">Administration <div class="fa fa-gear"></div></a></li>
+          <li><a href="/conversations/archived">Archive <div class="fa fa-folder-open"></div></a></li>
+          <li><a href="https://www.chatblend.com/support.php" target="_blank">Support <div class="fa fa-question-circle"></div></a></li>
+          <li><a href="/session/destroy">Sign Out <div class="fa fa-sign-out"></div></a></li>
+        </ul>
+      <!-- <% end %> -->
+    </div>
+
+    <div class="app-chats">
+      <div class="app-gradient"><img src="/img/gradient.png" alt=""></div>
+
+      <div class="main">                
+        <div ng-view></div>
+      </div>
+    </div>
+  </div>
+  <div id="alert-sound"></div>
+
+  <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+  <script>
+    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+    e.src='//www.google-analytics.com/analytics.js';
+    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+    ga('create','UA-XXXXX-X');ga('send','pageview');
+  </script>
+
+  <!-- build:js scripts/vendor.js -->
+  <!-- bower:js -->
+  <script src="bower_components/modernizr/modernizr.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+  <script src="bower_components/angular-touch/angular-touch.js"></script>
+  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <!-- endbower -->
+  <script src="/scripts/pushstream.js"></script>
+  <!-- endbuild -->
+
+  <!-- build:js({app,.tmp}) scripts/main.js -->
+  <script src="/scripts/chatblendApp.js"></script>
+  <script src="/scripts/main/main-ctrl.js"></script>
+
+  <script src="/scripts/components/channel/channel-directive.js"></script>
+  <script src="/scripts/components/conversation/conversation-directive.js"></script>
+  <script src="/scripts/components/message/message-directive.js"></script>
+  <script src="/scripts/components/quickMessage/quickMessage-directive.js"></script>
+  <script src="/scripts/components/visitor/visitor-directive.js"></script>
+
+  <!-- inject:partials -->
+  <!-- angular templates will be automaticaly converted in js and inserted here -->
+  <!-- endinject -->
+  <!-- endbuild -->
+</body>
 </html>
