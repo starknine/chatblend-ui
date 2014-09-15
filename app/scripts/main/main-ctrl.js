@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('chatblendUi')
+angular.module('chatblendApp')
   .controller('MainCtrl', function ($scope) {
     $scope.awesomeThings = [
       {

@@ -3,7 +3,7 @@
 describe('controllers', function(){
   var scope;
 
-  beforeEach(module('chatblendUi'));
+  beforeEach(module('chatblendApp'));
 
   beforeEach(inject(function($rootScope) {
   	scope = $rootScope.$new();

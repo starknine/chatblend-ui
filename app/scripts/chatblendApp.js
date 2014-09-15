@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('chatblendUi', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngResource', 'ngRoute'])
+angular.module('chatblendApp', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngResource', 'ngRoute'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
