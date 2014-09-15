@@ -1,0 +1,80 @@
+<div class="content">
+  <h2 class="notice green" ng-if="updated">Domain updated!</h2>
+    
+<h1><a href="/manage">Manage</a>  / Account Domains</h1>
+
+<ul class="domains list">
+  <div class="menu">
+    <ul>
+      <li><a href="/manage/domains/new">Add New Domain</a></li>
+    </ul>
+  </div>
+
+  <li ng-repeat="domain in domains">
+    <div class="show">
+      {{ domain.domain }}
+      <button class="delete" data-id="{{ domain.id }}">Delete</button>
+      <button class="edit" data-id="{{ domain.id }}">Edit</button>
+    </div>
+
+    <form class="edit-form" action="/manage/domains/{{ domain.id }}" method="post" style="display:none;">
+      <input name="id" type="hidden" value="{{ domain.id }}" />
+      <input name="domain" type="text" value="{{ domain.domain }}" />
+      <div class="actions">
+        <button class="cancel">Cancel</button>
+        <button type="submit">Save</button>
+      </div>
+    </form>
+
+    <form class="delete-form" action="/manage/domains/{{ domain.id }}/delete" method="post" style="display:none;">
+      <input name="id" type="hidden" value="{{ domain.id }}" />
+      <input name="domain" type="text" value="{{ domain.domain }}" disabled="disabled" />
+      <div class="actions">
+        <button class="cancel">Cancel</button>
+        <button type="submit">Delete</button>
+      </div>
+    </form>
+  </li>
+</ul>
+</div>
+
+<script>
+  // (function (window, document, $, undefined) {
+
+  //   $(document).ready(function () {
+
+  //     $('.domains .edit').click(function () {
+  //       var $this = $(this),
+  //           id = $this.attr('data-id'),
+  //           $li = $('#domain-' + id);
+
+  //       $('.show', $li).hide();
+  //       $('.edit-form', $li).show();
+  //       $('.delete-form', $li).hide();
+  //     });
+
+  //     $('.domains .delete').click(function () {
+  //       var $this = $(this),
+  //           id = $this.attr('data-id'),
+  //           $li = $('#domain-' + id);
+
+  //       $('.show', $li).hide();
+  //       $('.edit-form', $li).hide();
+  //       $('.delete-form', $li).show();
+  //     });
+
+  //     $('.domains .cancel').click(function (e) {
+  //       var $this = $(this),
+  //           id = $this.parent().parent().children('input[name="id"]').val(),
+  //           $li = $('#domain-' + id);
+
+  //       e.preventDefault();
+  //       $('.show', $li).show();
+  //       $('.edit-form', $li).hide();
+  //       $('.delete-form', $li).hide();
+  //     });
+
+  //   });
+
+  // })(window, document, jQuery);
+</script>

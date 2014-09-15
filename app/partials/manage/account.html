@@ -1,0 +1,71 @@
+<div class="content">
+  <h2 class="notice green" ng-if="updated">Account settings updated!</h2>
+
+<h1><a href="/manage">Manage</a> / Account Settings</h1>
+
+
+
+<form method="post">
+  <input type="hidden" name="id" value="{{ id }}" />
+  <table>
+    <tbody>
+      <tr>
+        <td><label for="business_name">Enable Web Notifcations</label></td>
+        <td><input type="button" id="button-webnote" value="Enable" /></td>
+      </tr>
+      <tr>
+        <td><label for="business_name">Business Name</label></td>
+        <td><input name="business_name" id="business_name" type="text" value="{{ business_name }}" /></td>
+      </tr>
+      <tr>
+        <td><label for="street_address">Street Address</label></td>
+        <td><input name="street_address" id="street_address" type="text" value="{{ street_address }}" /></td>
+      </tr>
+      <tr>
+        <td><label for="city">City</label></td>
+        <td><input name="city" id="city" type="text" value="{{ city }}" /></td>
+      </tr>
+      <tr>
+        <td><label for="state">State/Province</label></td>
+        <td><input name="state" id="state" type="text" value="{{ state }}" /></td>
+      </tr>
+      <tr>
+        <td><label for="country">Country</label></td>
+        <td><input name="country" id="country" type="text" value="{{ country }}" /></td>
+      </tr>
+      <tr>
+        <td><label for="zip_code">Zip/Postal Code</label></td>
+        <td><input name="zip_code" id="zip_code" type="text" value="{{ zip_code }}" /></td>
+      </tr>
+      <tr>
+        <td><label for="api_key">API key</label></td>
+        <td><input name="api_key" id="api_key" type="text" value="{{ api_key }}" disabled="disabled" /></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td><input type="submit" value="Save" /></td>
+      </tr>
+    </tbody>
+  </table>
+</form>
+</div>
+
+
+<script>
+  // (function (window, document, $, undefined) {
+  //   $( document ).ready(function() {
+  //     Notification.requestPermission( function(status) {
+  //       console.log(status); // notifications will only be displayed if "granted"
+  //       var n = new Notification("ChatBlend", {body: "Notifications Enabled"}); // this also shows the notification
+  //     });
+  //     $("#button-webnote").click(function(){
+  //       Notification.requestPermission();
+  //     });
+
+  //     if (window.Notification && Notification.permission === "granted") {
+  //       $("#button-webnote").attr('disabled','disabled');
+  //       $("#button-webnote").attr('value','Enabled');
+  //     }
+  // });
+  // })(window, document, jQuery);
+</script>

@@ -1,41 +1,42 @@
 <!doctype html>
 <html class="no-js" ng-app="chatblendApp">
 <head>
-    <meta charset="utf-8">
-    <title>frontend</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
+  <base href="/">
+  <meta charset="utf-8">
+  <title>frontend</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="ChatBlend">
-    <link rel="apple-touch-icon" href="/img/apple-touch-icon-precomposed.png"/>
-    <link href="/img/cb-loading-640x920.png" rel="apple-touch-startup-image">
-    <meta name="format-detection" content="telephone=no">
-    <link href='https://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="ChatBlend">
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon-precomposed.png"/>
+  <link href="/img/cb-loading-640x920.png" rel="apple-touch-startup-image">
+  <meta name="format-detection" content="telephone=no">
+  <link href='https://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
-    <!-- build:css({.tmp,app}) styles/base.css -->
-    <link rel="stylesheet" href="/styles/base.css">
+  <!-- build:css({.tmp,app}) styles/base.css -->
+  <link rel="stylesheet" href="/styles/base.css">
 
-    <!-- bower:css -->
-    <!-- endbower -->
-    <!-- endbuild -->
+  <!-- bower:css -->
+  <!-- endbower -->
+  <!-- endbuild -->
 
-    <!-- build:css({.tmp,app}) styles/styles.css -->
-    <link rel="stylesheet" href="/styles/styles.css">
-    <!-- endbuild -->
+  <!-- build:css({.tmp,app}) styles/styles.css -->
+  <link rel="stylesheet" href="/styles/styles.css">
+  <!-- endbuild -->
 
-    <!-- build:js scripts/modernizr.js -->
-    <script src="/bower_components/modernizr/modernizr.js"></script>
-    <!-- endbuild -->
+  <!-- build:js scripts/modernizr.js -->
+  <script src="/bower_components/modernizr/modernizr.js"></script>
+  <!-- endbuild -->
 
-    <script type="text/javascript">
-    (function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(chref=d.href).replace(e.href,"").indexOf("#asd")&&(!/^[a-z\+\.\-]+:/i.test(chref)||chref.indexOf(e.protocol+"//"+e.host)===0)&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone");
-    </script>
+  <script type="text/javascript">
+  (function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(chref=d.href).replace(e.href,"").indexOf("#asd")&&(!/^[a-z\+\.\-]+:/i.test(chref)||chref.indexOf(e.protocol+"//"+e.host)===0)&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone");
+  </script>
 </head>
-<body>
+<body ng-controller="MainCtrl">
   <div class="iosheader"></div>
   <header class="cb-header">
     <div class="cb-nav">
@@ -48,60 +49,58 @@
         <a class="cb-logo" href="/"><img src="/img/chat.png" alt="Chat Blend"></a>
       </div>
     </div>
-    <!-- <%= if @active_user do %> -->
-      <div class="cb-search">
-        <input type="checkbox" id="setting-searchshow" class="cb-setting" />
-        <div class="search-con">
-          <label for="search-input" class="hide-on-small"><i class="fa fa-search"></i></label>
-          <label for="setting-searchshow" class="show-on-small"><i class="fa fa-search"></i></label>
-          
-          <div class="search-input-container">
-            <input type="text" value="search conversations" class="search-input" id="search-input">
-          </div>
-          
-          <label for="search-input" class="search_text hide-on-small">Search</label>
-          <label for="setting-searchshow" class="search_text show-on-small">Search</label>
+    <div class="cb-search" ng-if="activeUser">
+      <input type="checkbox" id="setting-searchshow" class="cb-setting" />
+      <div class="search-con">
+        <label for="search-input" class="hide-on-small"><i class="fa fa-search"></i></label>
+        <label for="setting-searchshow" class="show-on-small"><i class="fa fa-search"></i></label>
+        
+        <div class="search-input-container">
+          <input type="text" value="search conversations" class="search-input" id="search-input">
         </div>
-        <div class="search-results">
-          <div class="results-close"><i class="fa fa-times-circle"></i></div>
+        
+        <label for="search-input" class="search_text hide-on-small">Search</label>
+        <label for="setting-searchshow" class="search_text show-on-small">Search</label>
+      </div>
+      <div class="search-results">
+        <div class="results-close"><i class="fa fa-times-circle"></i></div>
+      </div>
+    </div>
+    <div class="cb-user">
+      <div class="user-name">
+        Welcome, <strong>{{ activeUser.first_name }}</strong>
+      </div>
+      <div class="user-settings">
+        <div class="icon-button">
+          <a href="#settings" id="cb-alerts">
+              <i class="fa fa-bell"></i>
+              <div class="fa-label">Alerts</div>
+          </a>
+        </div>
+        <div class="icon-button">
+          <a href="/manage">
+              <i class="fa fa-gear"></i>
+              <div class="fa-label">Admin</div>
+          </a>
+        </div>
+        <div class="icon-button hide-on-small">
+          <a href="/session/destroy">
+              <i class="fa fa-sign-out"></i>
+              <div class="fa-label">Sign Out</div>
+          </a>
         </div>
       </div>
-      <div class="cb-user">
-        <div class="user-name">
-          Welcome, <strong>{{ active_user.first_name }}</strong>
-        </div>
-        <div class="user-settings">
-          <div class="icon-button">
-            <a href="#settings" id="cb-alerts">
-                <i class="fa fa-bell"></i>
-                <div class="fa-label">Alerts</div>
-            </a>
-          </div>
-          <div class="icon-button">
-            <a href="/manage">
-                <i class="fa fa-gear"></i>
-                <div class="fa-label">Admin</div>
-            </a>
-          </div>
-          <div class="icon-button hide-on-small">
-            <a href="/session/destroy">
-                <i class="fa fa-sign-out"></i>
-                <div class="fa-label">Sign Out</div>
-            </a>
-          </div>
-        </div>
 
-        <div class="settings-alerts">
-          <h3>Alerts</h3>
-          <ul class="sms-count-alert" style="display:none;">
-            <li><p>You currently have <span class="sms-available"></span> SMS available.</p></li>
-          </ul>
-          <ul>
-            <li><p>No current alerts</p></li>
-          </ul>
-        </div>
+      <div class="settings-alerts">
+        <h3>Alerts</h3>
+        <ul class="sms-count-alert" style="display:none;">
+          <li><p>You currently have <span class="sms-available"></span> SMS available.</p></li>
+        </ul>
+        <ul>
+          <li><p>No current alerts</p></li>
+        </ul>
       </div>
-    <!-- <% end %> -->
+    </div>
   </header>
 
 
@@ -121,17 +120,15 @@
     </div>
 
     <div class="app-menu">
-      <!-- <%= if @active_user do %> -->
-        <ul>
-          <!--<li><a href="#">Dashboard<div class="fa fa-desktop"></div></a></li>-->
-          <li><a href="/">Chats <div class="fa fa-bullhorn"></div></a></li>
-          <!--<li><a href="#">Export <div class="fa fa-download"></div></a></li>-->
-          <li><a href="/manage">Administration <div class="fa fa-gear"></div></a></li>
-          <li><a href="/conversations/archived">Archive <div class="fa fa-folder-open"></div></a></li>
-          <li><a href="https://www.chatblend.com/support.php" target="_blank">Support <div class="fa fa-question-circle"></div></a></li>
-          <li><a href="/session/destroy">Sign Out <div class="fa fa-sign-out"></div></a></li>
-        </ul>
-      <!-- <% end %> -->
+      <ul ng-if="activeUser">
+        <!--<li><a href="#">Dashboard<div class="fa fa-desktop"></div></a></li>-->
+        <li><a href="/">Chats <div class="fa fa-bullhorn"></div></a></li>
+        <!--<li><a href="#">Export <div class="fa fa-download"></div></a></li>-->
+        <li><a href="/manage">Administration <div class="fa fa-gear"></div></a></li>
+        <li><a href="/conversations/archived">Archive <div class="fa fa-folder-open"></div></a></li>
+        <li><a href="https://www.chatblend.com/support.php" target="_blank">Support <div class="fa fa-question-circle"></div></a></li>
+        <li><a href="/session/destroy">Sign Out <div class="fa fa-sign-out"></div></a></li>
+      </ul>
     </div>
 
     <div class="app-chats">
@@ -170,13 +167,21 @@
 
   <!-- build:js({app,.tmp}) scripts/main.js -->
   <script src="/scripts/chatblendApp.js"></script>
-  <script src="/scripts/main/main-ctrl.js"></script>
 
-  <script src="/scripts/components/channel/channel-directive.js"></script>
-  <script src="/scripts/components/conversation/conversation-directive.js"></script>
-  <script src="/scripts/components/message/message-directive.js"></script>
-  <script src="/scripts/components/quickMessage/quickMessage-directive.js"></script>
-  <script src="/scripts/components/visitor/visitor-directive.js"></script>
+  <script src="/components/api/api-service.js"></script>
+  <script src="/components/channel/channel-directive.js"></script>
+  <script src="/components/conversation/conversation-directive.js"></script>
+  <script src="/components/message/message-directive.js"></script>
+  <script src="/components/quickMessage/quickMessage-directive.js"></script>
+  <script src="/components/visitor/visitor-directive.js"></script>
+
+  <script src="/scripts/main/main-ctrl.js"></script>
+  <script src="/scripts/chats/chats-ctrl.js"></script>
+  <script src="/scripts/manage/manage-ctrl.js"></script>
+  <script src="/scripts/manage/manage-account-ctrl.js"></script>
+  <script src="/scripts/manage/manage-agents-ctrl.js"></script>
+  <script src="/scripts/manage/manage-channels-ctrl.js"></script>
+  <script src="/scripts/manage/manage-domains-ctrl.js"></script>
 
   <!-- inject:partials -->
   <!-- angular templates will be automaticaly converted in js and inserted here -->

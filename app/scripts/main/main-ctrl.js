@@ -2,6 +2,7 @@
 
 angular.module('chatblendApp')
   .controller('MainCtrl', function ($scope) {
+    $scope.activeUser = {"id":1,"first_name":"ChatBlend"};
     $scope.awesomeThings = [
       {
         'key': 'angular',

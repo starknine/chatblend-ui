@@ -1,0 +1,44 @@
+<div class="content">
+<h1><a href="/manage">Manage</a> / Account Agents </h1>
+
+<div class="list">
+  <div class="menu">
+    <ul>
+      <li ng-if="!preventSignup"><a href="/manage/users/create">Add an Agent</a></li>
+    </ul>
+  </div>
+  <ul class="users">
+    <li ng-repeat="user in users"><a href="/manage/users/{{ user.id }}">{{ user.first_name + " " + user.last_name }}</a></li>
+  </ul>
+  
+</div>
+
+<div class="at-max-users" ng-if="preventSignup">
+  <p>
+    Hey, you've set up the maximum amount of agents for your account
+    already. If you need more, please <a href="/upgrade">upgrade
+    your account</a>.
+  </p>
+</div>
+
+</div>
+
+<script>
+// (function (window, document, $, undefined) {
+//   $(document).ready(function () {
+//     var currentUserCount = $('.users>li').length,
+//         ChatBlend = ChatBlend || {};
+
+//     ChatBlend.active_account = jQuery.parseJSON($('#active_account').val());
+//     ChatBlend.active_user = jQuery.parseJSON($('#active_user').val());;
+
+//     if (currentUserCount < ChatBlend.active_account.user_count) {
+//       $('.add-new-user').show();
+//       $('.at-max-users').hide();
+//     } else {
+//       $('.add-new-user').hide();
+//       $('.at-max-users').show();
+//     }
+//   });
+// })(window, document, jQuery);
+</script>

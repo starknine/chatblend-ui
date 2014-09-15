@@ -21,14 +21,14 @@ gulp.task('styles', function () {
 });
 
 gulp.task('scripts', function () {
-  return gulp.src('app/scripts/**/*.js')
+  return gulp.src('app/{scripts,components}/**/*.js')
     .pipe($.jshint())
     .pipe($.jshint.reporter('jshint-stylish'))
     .pipe($.size());
 });
 
 gulp.task('partials', function () {
-  return gulp.src('app/{partials,scripts/components}/**/*.html')
+  return gulp.src('app/{partials,components}/**/*.html')
     .pipe($.minifyHtml({
       empty: true,
       spare: true,
